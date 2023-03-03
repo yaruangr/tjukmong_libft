@@ -3,45 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjukmong <tjukmong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaruangr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 15:04:13 by tjukmong          #+#    #+#             */
-/*   Updated: 2022/08/30 16:25:24 by tjukmong         ###   ########.fr       */
+/*   Created: 2023/02/26 14:56:21 by yaruangr          #+#    #+#             */
+/*   Updated: 2023/02/26 16:49:57 by yaruangr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+//#include	"libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-// Converts array of char (numbers ofcourse) to int
-// 1) trim the white spaces at the front.
-// 2) change to negative if '-' was found.
-// 3) trim '+'.
-// 4) loop through the numbers and add to nbr, if no
-//	  numbers found, break.
 
-int	ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-	int	nbr;
-	int	sign;
+	int i;
+    int d;
 
-	nbr = 0;
-	sign = 1;
-	while (*nptr == ' ' || (*nptr >= '\a' && *nptr <= '\r'))
-		nptr++;
-	if (*nptr == '-')
-	{
-		sign = -1;
-		nptr++;
-	}
-	else if (*nptr == '+')
-		nptr++;
-	while (*nptr)
-	{
-		if (*nptr >= '0' && *nptr <= '9')
-			nbr = (nbr * 10) + (*nptr - '0');
+	i = 0;
+    d = 1;
+
+	while (str[i] == '\0')
+        str++;
+		if (str[i] >= 'a' && str[i] <= 'z')
+		{
+			i++;
+		}
+		else if (str[i] >= 'A' && str[i] <= 'Z')
+		{
+			i++;
+		}
+        else if (str[i] >= '0' && str[i] <= '9')
+        {
+            return (str >= '0' && str <= '9');
+            i++;
+        }
 		else
-			break ;
-		nptr++;
-	}
-	return (sign * nbr);
+	return (0);
+}
+
+int	main(void)
+{
+	const char str[] = " 42BKK";
+
+	printf ("%d\n", ft_atoi(str));
+	return (0);
 }
